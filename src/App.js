@@ -41,6 +41,12 @@ const App = () => {
                             setNotification(null)
                         }, 5000);
                     })
+                    .catch(err => {
+                        setTimeout(() => {
+                            setNotification(null)
+                        }, 3000);
+                        setNotification(`Information ${existPerson.name} has already been removed from server`)
+                    })
             }
         } else {
             personService
@@ -51,6 +57,12 @@ const App = () => {
                     setTimeout(() => {
                         setNotification(null)
                     }, 5000);
+                })
+                .catch(err => {
+                    setNotification(`${person.name} not added`)
+                    setTimeout(() => {
+                        setNotification(null)
+                    }, 3000);
                 })
         }
         setNewName('')
@@ -78,6 +90,12 @@ const App = () => {
                 .removed(id)
                 .then(res => {
                     setPersons(persons.filter(p => p.id !== id))
+                })
+                .catch(err => {
+                    setTimeout(() => {
+                        setNotification(null)
+                    }, 3000);
+                    setNotification(`${person.name} delete from server`)
                 })
         } else {
             return
