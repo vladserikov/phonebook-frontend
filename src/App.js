@@ -59,7 +59,8 @@ const App = () => {
                     }, 5000);
                 })
                 .catch(err => {
-                    setNotification(`${person.name} not added`)
+                    console.log(err.response.data)
+                    setNotification(`${err.response.data.error}`)
                     setTimeout(() => {
                         setNotification(null)
                     }, 3000);
